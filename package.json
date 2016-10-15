@@ -1,0 +1,14 @@
+{
+  "name": "named-conf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Markus Felten <markus.felten@gmx.de>",
+  "license": "ISC",
+  "dependencies": {
+    "pratt-parser": "^2.0.0"
+  }
+}
