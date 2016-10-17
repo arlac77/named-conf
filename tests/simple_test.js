@@ -11,5 +11,5 @@ const chai = require('chai'),
 const parser = require('../dist/parser').parser;
 
 describe('read', () => {
-  it('empty', () => assert.equal(parser('{ }'), {}));
+  it('empty', () => assert.deepEqual(parser('{ }').value, {}));
 });
