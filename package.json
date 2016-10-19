@@ -1,7 +1,7 @@
 {
   "name": "named-conf",
   "version": "0.0.0-semantic-release",
-  "description": "read write named.conf",
+  "description": "read & write named.conf",
   "main": "dist/parser.js",
   "module": "src/parser.js",
   "keywords": [
@@ -25,6 +25,7 @@
     "coveralls": "2.11.14",
     "istanbul": "1.0.0-alpha.2",
     "markdown-doctest": "^0.8.1",
+    "jsdoc-to-markdown": "^2.0.0-alpha.23",
     "mocha": "3.1.2",
     "mocha-lcov-reporter": "^1.2.0",
     "rollup": "^0.36.3",
@@ -34,6 +35,7 @@
   "scripts": {
     "cover": "npm run build && node --harmony ./node_modules/istanbul/lib/cli.js cover --hook-run-in-context ./node_modules/mocha/bin/_mocha -- --R spec --U exports tests",
     "build": "./node_modules/rollup/bin/rollup --format=cjs --output=dist/parser.js -- src/parser.js",
+    "docs": "jsdoc2md -l off -t README.hbs -f src/parser.js > README.md",
     "test": "npm run build && mocha --harmony_shipping tests/*.js && markdown-doctest",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },

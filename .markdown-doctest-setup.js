@@ -1,5 +1,5 @@
 module.exports = {
   require: {
-    'pratt-parser': require('./dist/parser')
+    'named-conf': require('./dist/parser')
   }
 }
