@@ -21,22 +21,22 @@
     "pratt-parser": "^2.0.0"
   },
   "devDependencies": {
-    "chai": "3.5.0",
+    "chai": "^3.5.0",
     "coveralls": "2.11.14",
     "istanbul": "^0.4.5",
     "markdown-doctest": "^0.8.1",
     "jsdoc-to-markdown": "^2.0.1",
-    "mocha": "3.1.2",
+    "mocha": "^3.1.2",
     "mocha-lcov-reporter": "^1.2.0",
     "rollup": "^0.36.3",
-    "semantic-release": "6.3.1",
-    "cz-conventional-changelog": "1.2.0"
+    "semantic-release": "^6.3.1",
+    "cz-conventional-changelog": "^1.2.0"
   },
   "scripts": {
-    "cover": "./node_modules/istanbul/lib/cli.js cover --hook-run-in-context ./node_modules/mocha/bin/_mocha -- --R spec --U exports tests",
+    "cover": "npm run build && ./node_modules/istanbul/lib/cli.js cover --hook-run-in-context ./node_modules/mocha/bin/_mocha -- --R spec --U exports tests",
     "build": "./node_modules/rollup/bin/rollup --format=cjs --output=dist/parser.js -- src/parser.js",
     "docs": "jsdoc2md -l off -t README.hbs -f src/parser.js > README.md",
-    "test": "npm run build && mocha --harmony_shipping tests/*_test.js && markdown-doctest",
+    "test": "npm run build && mocha tests/*_test.js && markdown-doctest",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
