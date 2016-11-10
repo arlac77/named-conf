@@ -11,6 +11,7 @@
 [![docs](http://inch-ci.org/github/arlac77/named-conf.svg?branch=master)](http://inch-ci.org/github/arlac77/named-conf)
 [![downloads](http://img.shields.io/npm/dm/named-conf.svg?style=flat-square)](https://npmjs.org/package/named-conf)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+
 named-conf
 ====
 read & write named.conf
@@ -25,6 +26,15 @@ nc.read(fs.readSync('/etc/named/named.conf'));
 
 ```
 
+# API Reference
+{{#modules~}}
+- {{name}}
+{{/modules}}
+
+{{#functions}}* {{>docs}}
+{{/functions}}
+* * *
+
 
 install
 =======
@@ -34,15 +44,6 @@ With [npm](http://npmjs.org) do:
 ```
 npm install named-conf
 ```
-
-# API Reference
-{{#modules~}}
-- {{name}}
-{{/modules}}
-
-{{#functions}}* {{>docs}}
-{{/functions}}
-* * *
 
 license
 =======
