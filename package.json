@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/arlac77/named-conf#readme",
   "dependencies": {
-    "pratt-parser": "^2.0.11"
+    "pratt-parser": "^2.0.13"
   },
   "devDependencies": {
     "chai": "^3.5.0",
