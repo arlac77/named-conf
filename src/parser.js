@@ -3,10 +3,9 @@
 'use strict';
 
 import {
-  create
+  Parser
 }
 from 'pratt-parser';
-
 
 function Value(value) {
   return Object.create(null, {
@@ -16,70 +15,68 @@ function Value(value) {
   });
 }
 
-
-export function parser() {
-  return create({
-    identifier(value, properties, context) {
-        if (value === 'true') {
-          properties.type.value = 'constant';
-          properties.value.value = true;
-        } else if (value === 'false') {
-          properties.type.value = 'constant';
-          properties.value.value = false;
-        }
-      },
-      prefix: {
-        '[': {
-          nud(grammar, left) {
-          	console.log(`[[[ ${left}`);
-            const values = [];
-
-            if (grammar.token.value !== ']') {
-              while (true) {
-                values.push(grammar.expression(0).value);
-
-                if (grammar.token.value !== ',') {
-                  break;
-                }
-                grammar.advance(',');
-              }
-            }
-            grammar.advance(']');
-            return Value(values);
+export class NamedParser extends Parser {
+  constructor() {
+    super({
+      identifier(value, properties, context) {
+          if (value === 'true') {
+            properties.value.value = true;
+          } else if (value === 'false') {
+            properties.value.value = false;
           }
         },
-        '{': {
-          nud(grammar, left) {
-          	console.log(`{{{ ${left}`);
-            const object = {};
+        prefix: {
+          '[': {
+            nud(grammar, left) {
+              console.log(`[[[ ${left}`);
+              const values = [];
 
-            if (grammar.token.value !== '}') {
-              while (true) {
-                const key = grammar.expression(0).value;
+              if (grammar.token.value !== ']') {
+                while (true) {
+                  values.push(grammar.expression(0).value);
 
-                if (grammar.token.value !== ':') {
-                  break;
+                  if (grammar.token.value !== ',') {
+                    break;
+                  }
+                  grammar.advance(',');
                 }
-                grammar.advance(':');
-
-                const value = grammar.expression(0).value;
-                object[key] = value;
-                if (grammar.token.value === '}') {
-                  break;
-                }
-                grammar.advance(',');
               }
+              grammar.advance(']');
+              return Value(values);
             }
-            grammar.advance('}');
-            return Value(object);
+          },
+          '{': {
+            nud(grammar, left) {
+              const object = {};
+
+              if (grammar.token.value !== '}') {
+                while (true) {
+                  const key = grammar.expression(0).value;
+
+                  if (grammar.token.value !== ':') {
+                    break;
+                  }
+                  grammar.advance(':');
+
+                  const value = grammar.expression(0).value;
+                  object[key] = value;
+                  if (grammar.token.value === '}') {
+                    break;
+                  }
+                  grammar.advance(',');
+                }
+              }
+              grammar.advance('}');
+              return Value(object);
+            }
           }
+        },
+        infix: {
+          ',': {},
+          ':': {},
+          '}': {},
+          ']': {}
         }
-      },
-      infix: {
-        ',': {},
-        ':': {},
-        '}': {},
-        ']': {}
-      }
-  });
+    });
+  }
 }

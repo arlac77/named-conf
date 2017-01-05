@@ -22,10 +22,11 @@ usage
 =====
 
 ```js
-const nc = require('named-conf');
+const { NamedParser } = require('named-conf');
 
-nc.read(fs.readSync('/etc/named/named.conf'));
+const parser = new NamedParser();
 
+parser.parse('{ }');
 ```
 
 # API Reference

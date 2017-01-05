@@ -8,8 +8,11 @@ const chai = require('chai'),
   expect = chai.expect,
   should = chai.should();
 
-const parser = require('../dist/parser').parser;
+const {
+  NamedParser
+} = require('../dist/parser');
 
 describe('read', () => {
-  it('empty', () => assert.deepEqual(parser('{ }').value, {}));
+  const parser = new NamedParser();
+  it('empty', () => assert.deepEqual(parser.parse('{ }').value, {}));
 });
