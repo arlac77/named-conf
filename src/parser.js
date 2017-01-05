@@ -17,7 +17,7 @@ function Value(value) {
 }
 
 
-function parser() {
+export function parser() {
   return create({
     identifier(value, properties, context) {
         if (value === 'true') {
@@ -31,6 +31,7 @@ function parser() {
       prefix: {
         '[': {
           nud(grammar, left) {
+          	console.log(`[[[ ${left}`);
             const values = [];
 
             if (grammar.token.value !== ']') {
@@ -49,6 +50,7 @@ function parser() {
         },
         '{': {
           nud(grammar, left) {
+          	console.log(`{{{ ${left}`);
             const object = {};
 
             if (grammar.token.value !== '}') {
@@ -81,7 +83,3 @@ function parser() {
       }
   });
 }
-
-export {
-  parser
-};
