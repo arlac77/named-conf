@@ -16,5 +16,16 @@ describe('read', () => {
   const parser = new NamedParser();
   it('empty', () => assert.deepEqual(parser.parse('{ }').value, {}));
 
-  it('one slot', () => assert.deepEqual(parser.parse('{ type master ; }').value, { type : master }));
+  it('one slot', () => assert.deepEqual(parser.parse('{ type master ; }').value, {
+    type: 'master'
+  }));
+  it('two slots', () => assert.deepEqual(parser.parse(
+    '{ type master ; file "example.com.zone"; allowupdate { none; };}').value, {
+    type: 'master',
+    file: "example.com.zone",
+    "allow-update": {
+      none: undefined
+    }
+  }));
+
 });

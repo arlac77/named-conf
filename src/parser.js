@@ -21,23 +21,28 @@ function Value(value) {
 export class NamedParser extends Parser {
   constructor() {
     super({
-      identifier(value, properties, context) {
-        },
+      identifier(value, properties, context) {},
         prefix: {
           '{': {
             nud(grammar, left) {
               const object = {};
 
               if (grammar.token.value !== '}') {
-                while (true) {
+                do {
                   const key = grammar.expression(0).value;
-                  const value = grammar.expression(0).value;
-                  object[key] = value;
-                  if (grammar.token.value === '}') {
+
+                  /*
+                  if (grammar.token.value === ';') {
+                    object[key] = undefined;
                     break;
-                  }
+                  }*/
+
+                  const value = grammar.expression(0).value;
+
+                  object[key] = value;
                   grammar.advance(';');
                 }
+                while (grammar.token.value !== '}');
               }
               grammar.advance('}');
               return Value(object);
