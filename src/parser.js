@@ -15,6 +15,9 @@ function Value(value) {
   });
 }
 
+/**
+ * https://www.centos.org/docs/5/html/Deployment_Guide-en-US/s1-bind-namedconf.html
+ */
 export class NamedParser extends Parser {
   constructor() {
     super({
