@@ -15,4 +15,6 @@ const {
 describe('read', () => {
   const parser = new NamedParser();
   it('empty', () => assert.deepEqual(parser.parse('{ }').value, {}));
+
+  it('one slot', () => assert.deepEqual(parser.parse('{ type master ; }').value, { type : master }));
 });
