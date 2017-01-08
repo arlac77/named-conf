@@ -35,7 +35,6 @@ class NamedTokenizer extends Tokenizer {
     contextProperties.value = {
       value: value
     };
-    this._identifier(value, contextProperties, context);
     return [Object.create(IdentifierToken, contextProperties), i - offset];
   }
 }
