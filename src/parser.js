@@ -15,7 +15,7 @@ function Value(value) {
   });
 }
 
-NamedTokenizer extens Tokenizer {
+NamedTokenizer extends Tokenizer {
 
 	makeIdentifier(chunk, offset, context, contextProperties) {
 		let i = offset;
