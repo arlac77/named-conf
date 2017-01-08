@@ -3,7 +3,7 @@
 'use strict';
 
 import {
-  Parser
+  Parser, Tokenizer
 }
 from 'pratt-parser';
 
@@ -15,12 +15,32 @@ function Value(value) {
   });
 }
 
-/**
- * https://www.centos.org/docs/5/html/Deployment_Guide-en-US/s1-bind-namedconf.html
- */
-export class NamedParser extends Parser {
-  constructor() {
-    super({
+NamedTokenizer extens Tokenizer {
+
+	makeIdentifier(chunk, offset, context, contextProperties) {
+		let i = offset;
+		i += 1;
+		for (;;) {
+			const c = chunk[i];
+			if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') ||
+				(c >= '0' && c <= '9') || c === '_' || c === '-') {
+				i += 1;
+			} else {
+				break;
+			}
+		}
+
+		const value = chunk.substring(offset, i);
+
+		contextProperties.value = {
+			value: value
+		};
+		this._identifier(value, contextProperties, context);
+		return [Object.create(IdentifierToken, contextProperties), i - offset];
+	}
+}
+
+const grammar = {
       identifier(value, properties, context) {},
         prefix: {
           '{': {
@@ -53,6 +73,13 @@ export class NamedParser extends Parser {
           ';': {},
           '}': {}
         }
-    });
+    };
+    
+/**
+ * https://www.centos.org/docs/5/html/Deployment_Guide-en-US/s1-bind-namedconf.html
+ */
+export class NamedParser extends Parser {
+  constructor() {
+    super(grammar,{ tokenizer : new NamedTokenizer(grammar) });
   }
 }
