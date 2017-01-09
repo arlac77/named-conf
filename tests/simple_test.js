@@ -19,12 +19,12 @@ describe('read', () => {
   it('one slot', () => assert.deepEqual(parser.parse('{ type master ; }').value, {
     type: 'master'
   }));
-  it('two slots', () => assert.deepEqual(parser.parse(
-    '{ type master ; file "example.com.zone"; allow-update { none toBeRemoved; };}').value, {
+  it.only('two slots', () => assert.deepEqual(parser.parse(
+    '{ type master ; file "example.com.zone"; allow-update { none ; };}').value, {
     type: 'master',
     file: 'example.com.zone',
     'allow-update': {
-      none: 'toBeRemoved'
+      none: undefined
     }
   }));
 

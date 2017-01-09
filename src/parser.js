@@ -30,10 +30,8 @@ class NamedTokenizer extends Tokenizer {
       }
     }
 
-    const value = chunk.substring(offset, i);
-
     contextProperties.value = {
-      value: value
+      value: chunk.substring(offset, i)
     };
     return [Object.create(IdentifierToken, contextProperties), i - offset];
   }
@@ -49,11 +47,11 @@ const grammar = {
           do {
             const key = grammar.expression(0).value;
 
-            /*
             if (grammar.token.value === ';') {
+              grammar.advance(';');
               object[key] = undefined;
               break;
-            }*/
+            }
 
             const value = grammar.expression(0).value;
 
