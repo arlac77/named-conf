@@ -20,12 +20,20 @@ describe('read', () => {
     type: 'master'
   }));
   it.only('two slots', () => assert.deepEqual(parser.parse(
-    '{ type master ; file "example.com.zone"; allow-update { none ; };}').value, {
+    `{ type master ; file "example.com.zone"; allow-update { none ; }; forwarders {
+    		"10.0.0.1";
+    	};
+}`
+  ).value, {
     type: 'master',
     file: 'example.com.zone',
     'allow-update': {
       none: undefined
+    },
+    'forwarders': {
+      '10.0.0.1': undefined
     }
+
   }));
 
 });
