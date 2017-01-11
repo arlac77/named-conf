@@ -3,7 +3,7 @@
 'use strict';
 
 import {
-  Parser, Tokenizer, IdentifierToken
+  Parser, IdentifierToken, NumberToken
 }
 from 'pratt-parser';
 
@@ -15,40 +15,65 @@ function Value(value) {
   });
 }
 
-class NamedTokenizer extends Tokenizer {
-
-  makeIdentifier(chunk, offset, context, contextProperties) {
-    let i = offset;
-    i += 1;
-    for (;;) {
-      const c = chunk[i];
-      if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') ||
-        (c >= '0' && c <= '9') || c === '_' || c === '-') {
-        i += 1;
-      } else {
-        break;
-      }
-    }
-
-    contextProperties.value = {
-      value: chunk.substring(offset, i)
-    };
-    return [Object.create(IdentifierToken, contextProperties), i - offset];
-  }
-}
-
 const grammar = {
-  common: {
-    identifier: {
-      regex: /([A-Z_][A-Za-z_\-]+)/
-    },
-    ipv4address: {
-      regex: /((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)/
-    },
-    ipv6address: {
-      regex: /(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/
-    }
-  },
+  tokens: [{
+    token: Object.create(NumberToken, {
+      type: {
+        value: 'ip-address'
+      },
+      parseString: {
+        value: function (tokenizer, pp, properties) {
+          const str = pp.chunk.substring(pp.offset);
+          const m = str.match(/([0-9\.]+)/);
+          const value = m[1];
+
+          properties.value = {
+            value: value
+          };
+
+          pp.offset += value.length;
+          return Object.create(this, properties);
+        }
+      }
+    }),
+    firstChar: "012",
+  }, {
+    token: Object.create(IdentifierToken, {
+      parseString: {
+        value: function (tokenizer, pp, properties) {
+          let i = pp.offset + 1;
+          for (;;) {
+            const c = pp.chunk[i];
+            if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') ||
+              (c >= '0' && c <= '9') || c === '_' ||  c === '-') {
+              i += 1;
+            } else {
+              break;
+            }
+          }
+          const value = pp.chunk.substring(pp.offset, i);
+
+          if (value === 'true') {
+            properties.value = {
+              value: true
+            };
+          } else if (value === 'false') {
+            properties.value = {
+              value: false
+            };
+          } else {
+            properties.value = {
+              value: value
+            };
+          }
+
+          pp.offset = i;
+          return Object.create(this, properties);
+        }
+      }
+    }),
+    firstChar: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_",
+  }],
   prefix: {
     '{': {
       nud(grammar, left) {
@@ -87,8 +112,6 @@ const grammar = {
  */
 export class NamedParser extends Parser {
   constructor() {
-    super(grammar, {
-      tokenizer: new NamedTokenizer(grammar)
-    });
+    super(grammar);
   }
 }
