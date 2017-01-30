@@ -34,7 +34,7 @@ const grammar = {
         value: 'ip-address'
       },
       parseString: {
-        value: function (tokenizer, pp) {
+        value: function (pp) {
           const str = pp.chunk.substring(pp.offset);
           const m = str.match(/([0-9\.]+)/);
           const value = m[1];
@@ -50,7 +50,7 @@ const grammar = {
       }
     }), Object.create(IdentifierToken, {
       parseString: {
-        value: function (tokenizer, pp) {
+        value: function (pp) {
           let i = pp.offset + 1;
           for (;;) {
             const c = pp.chunk[i];
@@ -63,7 +63,7 @@ const grammar = {
           }
           const value = pp.chunk.substring(pp.offset, i);
           const properties = pp.properties;
-          
+
           if (value === 'true') {
             properties.value = {
               value: true
