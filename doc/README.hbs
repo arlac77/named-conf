@@ -1,4 +1,5 @@
 [![npm](https://img.shields.io/npm/v/named-conf.svg)](https://www.npmjs.com/package/named-conf)
+[![Greenkeeper](https://badges.greenkeeper.io/arlac77/named-conf)](https://greenkeeper.io/)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/arlac77/named-conf)
 [![Build Status](https://secure.travis-ci.org/arlac77/named-conf.png)](http://travis-ci.org/arlac77/named-conf)
 [![bithound](https://www.bithound.io/github/arlac77/named-conf/badges/score.svg)](https://www.bithound.io/github/arlac77/named-conf)
