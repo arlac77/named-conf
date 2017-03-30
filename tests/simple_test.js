@@ -1,25 +1,36 @@
-/* global describe, it, xit */
 /* jslint node: true, esnext: true */
 
 'use strict';
 
-const chai = require('chai'),
-  assert = chai.assert,
-  expect = chai.expect,
-  should = chai.should();
+import test from 'ava';
+
+/*
+import {
+  NamedParser
+} 
+from '../src/parser';
+*/
 
 const {
   NamedParser
 } = require('../dist/parser');
 
-describe('read', () => {
-  const parser = new NamedParser();
-  it('empty', () => assert.deepEqual(parser.parse('{ }').value, {}));
 
-  it('one slot', () => assert.deepEqual(parser.parse('{ type master ; }').value, {
+test('read empty', t => {
+  const parser = new NamedParser();
+  t.deepEqual(parser.parse('{ }').value, {});
+});
+
+test('read one slot', t => {
+  const parser = new NamedParser();
+  t.deepEqual(parser.parse('{ type master ; }').value, {
     type: 'master'
-  }));
-  it.only('two slots', () => assert.deepEqual(parser.parse(
+  });
+});
+
+test('read two slots', t => {
+  const parser = new NamedParser();
+  t.deepEqual(parser.parse(
     `{ type master ; file "example.com.zone"; allow-update { none ; }; forwarders {
     		10.0.0.1;
     	};
@@ -33,7 +44,5 @@ describe('read', () => {
     'forwarders': {
       '10.0.0.1': undefined
     }
-
-  }));
-
+  });
 });
