@@ -29,8 +29,8 @@ after_success:
   - git config --global user.email travis
   - git config --global push.default matching
   - git remote rm origin
-  - git pull
   - git remote add origin https://arlac77:${GH_TOKEN}@github.com/arlac77/named-conf.git
+  - git pull
   - git add README.md
   - git commit -m "docs:sync"
   - git push origin
