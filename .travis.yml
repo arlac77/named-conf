@@ -29,5 +29,6 @@ after_success:
   - git config --global user.name travis
   - git config --global user.email travis
   - git commit -m "docs(README): sync"
-  - git push -f -q https://arlac77:${GH_TOKEN}@github.com/arlac77/named-conf.git
+  - git remote add origin https://arlac77:${GH_TOKEN}@github.com/arlac77/named-conf.git
+  - git push origin
   - npm run semantic-release
