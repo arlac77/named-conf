@@ -26,7 +26,8 @@ after_script:
   - npm run docs
 after_success:
   - git add README.md
-  - git -c user.name='travis' -c user.email='travis'
+  - git config --global user.name travis
+  - git config --global user.email travis
   - git commit -m "docs(README): sync"
-  - git push -f -q https://arlac77:$GH_TOKEN@github.com/arlac77/named-conf.git
+  - git push -f -q https://arlac77:${GH_TOKEN}@github.com/arlac77/named-conf.git
   - npm run semantic-release
