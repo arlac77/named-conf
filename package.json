@@ -9,7 +9,7 @@
     "bind"
   ],
   "engines": {
-    "node": ">=7.8.0"
+    "node": ">=7.9.0"
   },
   "license": "BSD-2-Clause",
   "bugs": {
@@ -29,17 +29,19 @@
     "ava": "^0.19.1",
     "babel-preset-es2015-rollup": "^3.0.0",
     "rollup-plugin-babel": "^2.7.1",
-    "rollup-plugin-multi-entry": "^2.0.1"
+    "rollup-plugin-multi-entry": "^2.0.1",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
   },
   "scripts": {
-    "cover": "nyc ava",
+    "cover": "nyc npm test",
     "docs": "jsdoc2md -l off -t doc/README.hbs -f src/*.js >README.md",
-    "test": "ava",
+    "test": "mocha tests/*_test.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "prepublish": "rollup --output=dist/parser.js -c -- src/parser.js",
-    "pretest": "rollup -c rollup.config.test.js",
+    "pretest": "npm run prepublish",
     "posttest": "markdown-doctest",
-    "precover": "rollup -c rollup.config.test.js"
+    "precover": "npm run prepublish"
   },
   "repository": {
     "type": "git",
@@ -72,5 +74,10 @@
     "require": [
       "babel-register"
     ]
+  },
+  "template": {
+    "repository": {
+      "url": "https://github.com/Kronos-Tools/npm-package-template.git"
+    }
   }
 }
