@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - 7.8.0
+  - 7.9.0
 sudo: false
 branches:
   only:
@@ -25,12 +25,4 @@ after_script:
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
   - npm run docs
 after_success:
-  - git config --global user.name travis
-  - git config --global user.email travis
-  - git config --global push.default matching
-  - git remote add upstream https://arlac77:${GH_TOKEN}@github.com/arlac77/named-conf.git
-  - git fetch upstream
-  - git add README.md
-  - git commit -m "docs:sync"
-  - git push --force upstream
   - npm run semantic-release
