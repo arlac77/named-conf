@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/arlac77/named-conf#readme",
   "dependencies": {
-    "pratt-parser": "^7.0.3"
+    "pratt-parser": "^7.0.6"
   },
   "devDependencies": {
     "cz-conventional-changelog": "^2.0.0",
