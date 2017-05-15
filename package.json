@@ -41,7 +41,7 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "prepublish": "rollup --output=dist/parser.js -c -- src/parser.js",
     "pretest": "rollup -c rollup.config.test.js",
-    "posttest": "markdown-doctest",
+    "posttest": "npm run prepublish && markdown-doctest",
     "precover": "rollup -c rollup.config.test.js"
   },
   "repository": {
