@@ -9,7 +9,7 @@
     "bind"
   ],
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=8.1.0"
   },
   "license": "BSD-2-Clause",
   "bugs": {
@@ -20,10 +20,9 @@
     "pratt-parser": "^7.0.6"
   },
   "devDependencies": {
-    "cz-conventional-changelog": "^2.0.0",
     "jsdoc-to-markdown": "^3.0.0",
     "markdown-doctest": "^0.9.1",
-    "nyc": "^11.0.1",
+    "nyc": "^11.0.2",
     "rollup": "^0.42.0",
     "semantic-release": "^6.3.6",
     "ava": "^0.19.1",
@@ -40,9 +39,9 @@
     "test": "ava",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "prepublish": "rollup --output=dist/parser.js -c -- src/parser.js",
-    "pretest": "rollup -c rollup.config.test.js",
+    "pretest": "rollup -c tests/rollup.config.js",
     "posttest": "npm run prepublish && markdown-doctest",
-    "precover": "rollup -c rollup.config.test.js"
+    "precover": "rollup -c tests/rollup.config.js"
   },
   "repository": {
     "type": "git",
@@ -54,11 +53,6 @@
       "email": "markus.felten@gmx.de"
     }
   ],
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
   "nyc": {
     "include": [
       "dist/**/*.js"
