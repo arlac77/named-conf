@@ -47,10 +47,12 @@
     "type": "git",
     "url": "https://github.com/arlac77/named-conf.git"
   },
-  "contributors": [{
-    "name": "Markus Felten",
-    "email": "markus.felten@gmx.de"
-  }],
+  "contributors": [
+    {
+      "name": "Markus Felten",
+      "email": "markus.felten@gmx.de"
+    }
+  ],
   "nyc": {
     "include": [
       "build/test-bundle.js",
