@@ -47,20 +47,19 @@
     "type": "git",
     "url": "https://github.com/arlac77/named-conf.git"
   },
-  "contributors": [
-    {
-      "name": "Markus Felten",
-      "email": "markus.felten@gmx.de"
-    }
-  ],
+  "contributors": [{
+    "name": "Markus Felten",
+    "email": "markus.felten@gmx.de"
+  }],
   "nyc": {
     "include": [
-      "dist/**/*.js"
+      "build/test-bundle.js",
+      "src/**/*.js"
     ],
     "reporter": [
       "lcov"
     ],
-    "report-dir": "./coverage"
+    "report-dir": "./build/coverage"
   },
   "ava": {
     "files": [
