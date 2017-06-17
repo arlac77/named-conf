@@ -1,16 +1,9 @@
 import test from 'ava';
 
-/*
 import {
   NamedParser
-} 
+}
 from '../src/parser';
-*/
-
-const {
-  NamedParser
-} = require('../dist/parser');
-
 
 test('read empty', t => {
   const parser = new NamedParser();
@@ -37,7 +30,7 @@ test('read two slots', t => {
     'allow-update': {
       none: undefined
     },
-    'forwarders': {
+    forwarders: {
       '10.0.0.1': undefined
     }
   });

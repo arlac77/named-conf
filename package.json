@@ -26,7 +26,6 @@
     "rollup": "^0.43.0",
     "semantic-release": "^6.3.6",
     "ava": "^0.19.1",
-    "babel-preset-es2015-rollup": "^3.0.0",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-multi-entry": "^2.0.1",
     "jsdoc-babel": "^0.3.0",
@@ -78,5 +77,6 @@
   },
   "xo": {
     "space": true
-  }
+  },
+  "false": {}
 }
