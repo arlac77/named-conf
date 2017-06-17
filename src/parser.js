@@ -1,7 +1,3 @@
-/* global describe, it, xit */
-/* jslint node: true, esnext: true */
-'use strict';
-
 import {
   Parser, IdentifierToken, NumberToken, WhiteSpaceToken,
   StringToken
@@ -11,7 +7,7 @@ from 'pratt-parser';
 function Value(value) {
   return Object.create(null, {
     value: {
-      value: value
+      value
     }
   });
 }
@@ -22,7 +18,7 @@ const grammar = {
     WhiteSpaceToken,
     Object.create(NumberToken, {
       registerWithinTokenizer: {
-        value: function (tokenizer) {
+        value(tokenizer) {
           for (const c of '012') {
             tokenizer.maxTokenLengthForFirstChar[c] = 1;
             tokenizer.registeredTokens[c] = this;
@@ -34,14 +30,14 @@ const grammar = {
         value: 'ip-address'
       },
       parseString: {
-        value: function (pp) {
+        value(pp) {
           const str = pp.chunk.substring(pp.offset);
           const m = str.match(/([0-9\.]+)/);
           const value = m[1];
 
           const properties = pp.properties;
           properties.value = {
-            value: value
+            value
           };
 
           pp.offset += value.length;
@@ -50,12 +46,12 @@ const grammar = {
       }
     }), Object.create(IdentifierToken, {
       parseString: {
-        value: function (pp) {
+        value(pp) {
           let i = pp.offset + 1;
           for (;;) {
             const c = pp.chunk[i];
             if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') ||
-              (c >= '0' && c <= '9') || c === '_' ||  c === '-') {
+              (c >= '0' && c <= '9') || c === '_' || c === '-') {
               i += 1;
             } else {
               break;
@@ -74,7 +70,7 @@ const grammar = {
             };
           } else {
             properties.value = {
-              value: value
+              value
             };
           }
 
@@ -86,7 +82,7 @@ const grammar = {
   ],
   prefix: {
     '{': {
-      nud(grammar, left) {
+      nud(grammar) {
         const object = {};
 
         if (grammar.token.value !== '}') {
