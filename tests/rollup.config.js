@@ -1,8 +1,7 @@
 import babel from 'rollup-plugin-babel';
-import multiEntry from 'rollup-plugin-multi-entry';
 
 export default {
-  input: 'tests/**/*-test.js',
+  input: 'tests/simple-test.js',
   external: ['ava', 'pratt-parser'],
 
   plugins: [
