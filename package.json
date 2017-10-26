@@ -9,7 +9,7 @@
     "bind"
   ],
   "engines": {
-    "node": ">=8.7.0"
+    "node": ">=8.8.1"
   },
   "license": "BSD-2-Clause",
   "bugs": {
@@ -24,7 +24,7 @@
     "markdown-doctest": "^0.9.1",
     "nyc": "^11.3.0",
     "rollup": "^0.50.0",
-    "semantic-release": "^8.2.1",
+    "semantic-release": "^8.2.2",
     "ava": "^0.23.0",
     "rollup-plugin-babel": "^3.0.2",
     "jsdoc-babel": "^0.3.0",
