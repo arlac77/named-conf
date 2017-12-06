@@ -9,7 +9,7 @@
     "bind"
   ],
   "engines": {
-    "node": ">=8.9.1"
+    "node": ">=8.9.2"
   },
   "license": "BSD-2-Clause",
   "bugs": {
