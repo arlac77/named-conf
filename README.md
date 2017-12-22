@@ -30,9 +30,7 @@ const parser = new NamedParser();
 parser.parse('{ }');
 ```
 
-# API Reference
-
-* * *
+# API
 
 
 install
