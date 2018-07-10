@@ -1,20 +1,13 @@
-import babel from 'rollup-plugin-babel';
-
 export default {
   input: 'tests/simple-test.js',
   external: ['ava', 'pratt-parser'],
 
-  plugins: [
-    babel({
-      babelrc: false,
-      presets: ['stage-3'],
-      exclude: 'node_modules/**'
-    })
-  ],
+  plugins: [],
 
   output: {
     file: 'build/test-bundle.js',
     format: 'cjs',
-    sourcemap: true
+    sourcemap: true,
+    interop: false
   }
 };
