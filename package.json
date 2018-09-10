@@ -69,7 +69,7 @@
   },
   "nyc": {
     "include": [
-      "build/test-bundle.js",
+      "build/*-test.js",
       "src/**/*.js"
     ],
     "reporter": [
