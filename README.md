@@ -7,7 +7,6 @@
 [![Coverage Status](https://coveralls.io/repos/arlac77/named-conf/badge.svg)](https://coveralls.io/r/arlac77/named-conf)
 [![Known Vulnerabilities](https://snyk.io/test/github/arlac77/named-conf/badge.svg)](https://snyk.io/test/github/arlac77/named-conf)
 [![GitHub Issues](https://img.shields.io/github/issues/arlac77/named-conf.svg?style=flat-square)](https://github.com/arlac77/named-conf/issues)
-[![Stories in Ready](https://badge.waffle.io/arlac77/named-conf.svg?label=ready&title=Ready)](http://waffle.io/arlac77/named-conf)
 [![Dependency Status](https://david-dm.org/arlac77/named-conf.svg)](https://david-dm.org/arlac77/named-conf)
 [![devDependency Status](https://david-dm.org/arlac77/named-conf/dev-status.svg)](https://david-dm.org/arlac77/named-conf#info=devDependencies)
 [![docs](http://inch-ci.org/github/arlac77/named-conf.svg?branch=master)](http://inch-ci.org/github/arlac77/named-conf)
