@@ -31,7 +31,7 @@ const grammar = {
       },
       parseString: {
         value(pp) {
-          const str = pp.chunk.substring(pp.offset);
+          const str = pp.chunk.slice(pp.offset);
           const m = str.match(/([0-9\.]+)/);
           const value = m[1];
 
@@ -57,7 +57,7 @@ const grammar = {
               break;
             }
           }
-          const value = pp.chunk.substring(pp.offset, i);
+          const value = pp.chunk.slice(pp.offset, i);
           const properties = pp.properties;
 
           if (value === 'true') {
