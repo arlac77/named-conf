@@ -1,8 +1,10 @@
 import {
-  Parser, IdentifierToken, NumberToken, WhiteSpaceToken,
+  Parser,
+  IdentifierToken,
+  NumberToken,
+  WhiteSpaceToken,
   StringToken
-}
-from 'pratt-parser';
+} from "pratt-parser";
 
 function Value(value) {
   return Object.create(null, {
@@ -19,7 +21,7 @@ const grammar = {
     Object.create(NumberToken, {
       registerWithinTokenizer: {
         value(tokenizer) {
-          for (const c of '012') {
+          for (const c of "012") {
             tokenizer.maxTokenLengthForFirstChar[c] = 1;
             tokenizer.registeredTokens[c] = this;
           }
@@ -27,7 +29,7 @@ const grammar = {
       },
 
       type: {
-        value: 'ip-address'
+        value: "ip-address"
       },
       parseString: {
         value(pp) {
@@ -44,14 +46,20 @@ const grammar = {
           return Object.create(this, properties);
         }
       }
-    }), Object.create(IdentifierToken, {
+    }),
+    Object.create(IdentifierToken, {
       parseString: {
         value(pp) {
           let i = pp.offset + 1;
           for (;;) {
             const c = pp.chunk[i];
-            if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') ||
-              (c >= '0' && c <= '9') || c === '_' || c === '-') {
+            if (
+              (c >= "a" && c <= "z") ||
+              (c >= "A" && c <= "Z") ||
+              (c >= "0" && c <= "9") ||
+              c === "_" ||
+              c === "-"
+            ) {
               i += 1;
             } else {
               break;
@@ -60,11 +68,11 @@ const grammar = {
           const value = pp.chunk.slice(pp.offset, i);
           const properties = pp.properties;
 
-          if (value === 'true') {
+          if (value === "true") {
             properties.value = {
               value: true
             };
-          } else if (value === 'false') {
+          } else if (value === "false") {
             properties.value = {
               value: false
             };
@@ -81,16 +89,16 @@ const grammar = {
     })
   ],
   prefix: {
-    '{': {
+    "{": {
       nud(grammar) {
         const object = {};
 
-        if (grammar.token.value !== '}') {
+        if (grammar.token.value !== "}") {
           do {
             const key = grammar.expression(0).value;
 
-            if (grammar.token.value === ';') {
-              grammar.advance(';');
+            if (grammar.token.value === ";") {
+              grammar.advance(";");
               object[key] = undefined;
               break;
             }
@@ -98,18 +106,17 @@ const grammar = {
             const value = grammar.expression(0).value;
 
             object[key] = value;
-            grammar.advance(';');
-          }
-          while (grammar.token.value !== '}');
+            grammar.advance(";");
+          } while (grammar.token.value !== "}");
         }
-        grammar.advance('}');
+        grammar.advance("}");
         return Value(object);
       }
     }
   },
   infix: {
-    ';': {},
-    '}': {}
+    ";": {},
+    "}": {}
   }
 };
 
