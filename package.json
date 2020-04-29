@@ -24,7 +24,7 @@
     "lint": "documentation lint src/parser.mjs"
   },
   "dependencies": {
-    "pratt-parser": "^7.0.9"
+    "pratt-parser": "^8.0.7"
   },
   "devDependencies": {
     "ava": "^3.8.1",
