@@ -35,7 +35,7 @@ parser.parse('{ }');
 
 **Extends Parser**
 
-https://www.centos.org/docs/5/html/Deployment_Guide-en-US/s1-bind-namedconf.html
+<https://www.centos.org/docs/5/html/Deployment_Guide-en-US/s1-bind-namedconf.html>
 
 # install
 
