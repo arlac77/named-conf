@@ -1,5 +1,5 @@
 [![npm](https://img.shields.io/npm/v/named-conf.svg)](https://www.npmjs.com/package/named-conf)
-[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://spdx.org/licenses/0BSD.html)
+[![License](https://img.shields.io/badge/License-0BSD-blue.svg)](https://spdx.org/licenses/0BSD.html)
 [![bundlejs](https://deno.bundlejs.com/?q=named-conf\&badge=detailed)](https://bundlejs.com/?q=named-conf)
 [![downloads](http://img.shields.io/npm/dm/named-conf.svg?style=flat-square)](https://npmjs.org/package/named-conf)
 [![GitHub Issues](https://img.shields.io/github/issues/arlac77/named-conf.svg?style=flat-square)](https://github.com/arlac77/named-conf/issues)
